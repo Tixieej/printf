@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/09 14:34:44 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/14 13:39:22 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/14 15:44:08 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_zero_int(int width, int prcsn, int len, char *s)
 	int zero;
 
 	zero = 0;
+	space = 0;
 	if (*s == '-')
 	{
 		len--;
