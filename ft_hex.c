@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/07 16:47:34 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/09 14:34:36 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/14 15:57:11 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft/libft.h"
 #include <unistd.h>
 
+#include <stdio.h>
 static int	ft_hexlen(unsigned int x)
 {
 	int				len;
@@ -43,6 +44,8 @@ char		*ft_itoa_hex(unsigned int x, int len)
 		return (NULL);
 	str[len] = '\0';
 	len--;
+	if (x == 0)
+		str[0] = '0';
 	while (x > 0)
 	{
 		temp = (x % 16);
@@ -71,12 +74,18 @@ void		ft_hex(const char *fmt, t_conv *conv, va_list ap)
 	width = conv->width;
 	prcsn = conv->prcsn;
 	//len = ft_strlen(s);
-	if (width != 0)
+	if (conv->flag != '-' && conv->flag != '0')
+		ft_no_flag(width, prcsn, len, s);
+	if (conv->flag == '0')
+		ft_zero_int(width, prcsn, len, s);
+	if (conv->flag == '-')
+		ft_dash_int(width, prcsn, len, s);
+	/*if (width != 0)
 	{
 		if (conv->flag == '0')
 			ft_zeroes(width, prcsn, len);
 	}
-	write(1, s, len);
+	//write(1, s, len);
 	if (conv->flag == '-')
-		ft_spaces(width, prcsn, len);
+		ft_spaces(width, prcsn, len);*/
 }
