@@ -6,12 +6,12 @@
 #    By: rde-vrie <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/15 13:34:34 by rde-vrie      #+#    #+#                  #
-#    Updated: 2020/01/02 15:10:22 by rde-vrie      ########   odam.nl          #
+#    Updated: 2020/01/13 12:32:58 by rde-vrie      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-SRC = ft_printf.c ft_integer.c
+SRC = ft_printf.c ft_int2.c ft_string.c ft_char.c ft_pointer.c ft_hex.c
 OBJ_SRC = $(SRC:.c=.o)
 BONUS =
 OBJ_BONUS = $(BONUS:.c=.o)

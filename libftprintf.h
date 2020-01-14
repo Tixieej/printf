@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/16 09:30:29 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/06 11:21:38 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/13 12:35:38 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ const char	*percent(const char *fmt, va_list ap);
 int			ft_printf(const char *fmt, ...);
 void		ft_dash(int width, int prcsn, int len);
 char		*ft_zero(int width, int prcsn, int len, char *s);
+void		ft_string(const char *fmt, t_conv *conv, va_list ap);
+void		ft_spaces(int width, int prcsn, int len);
+void		ft_zeroes(int width, int prcsn, int len);
+void		ft_write_string(int prcsn, int len, char *s);
+void		ft_char(const char *fmt, t_conv *conv, va_list ap);
+void		ft_pointer(const char *fmt, t_conv *conv, va_list ap);
+void		ft_hex(const char *fmt, t_conv *conv, va_list ap);
+void		ft_zero_int(int width, int prcsn, int len, char *s);
+void		ft_no_flag(int width, int prcsn, int len, char *s);
+void		ft_dash_int(int width, int prcsn, int len, char *s);
 /*
 ** LIBFT functions 
 */
