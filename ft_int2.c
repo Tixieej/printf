@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/09 14:34:44 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/14 13:38:06 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/14 13:39:22 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <unistd.h>
 
 #include <stdio.h>
-test for github desktop
 void	ft_write(char c, int len)
 {
 	while (len > 0)
