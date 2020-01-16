@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/09 14:34:44 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/14 15:44:08 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/16 16:00:42 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,29 @@
 #include <unistd.h>
 
 #include <stdio.h>
-void	ft_write(char c, int len)
+
+char	*ft_negative(char *s, int *result)
+{
+	if (*s == '-')
+	{
+		s++;
+		write(1, "-", 1);
+		(*result)++;
+	}
+	return (s);
+}
+
+void	ft_write(char c, int len, int *result)
 {
 	while (len > 0)
 	{
 		write(1, &c, 1);
 		len--;
+		(*result)++;
 	}
 }
 
-void	ft_no_flag(int width, int prcsn, int len, char *s)
+void	ft_no_flag(int width, int prcsn, int len, char *s, int *result)
 {
 	int space;
 	int zero;
@@ -32,7 +45,8 @@ void	ft_no_flag(int width, int prcsn, int len, char *s)
 	zero = 0;
 	if (len > width && len > prcsn)
 	{
-		write(1, s, len); //hier gaat het fout, je INT_MIN wordt met len-1 geprint!
+		write(1, s, len);
+		*result += len;
 		return ;
 	}
 	if (*s == '-')
@@ -43,17 +57,14 @@ void	ft_no_flag(int width, int prcsn, int len, char *s)
 	if (prcsn > len)
 		zero = prcsn - len;
 	space = (prcsn > len) ? width - prcsn : width - len;
-	ft_write(' ', space);
-	if (*s == '-')
-	{
-		s++;
-		write(1, "-", 1);
-	}
-	ft_write('0', zero);
+	ft_write(' ', space, result);
+	s = ft_negative(s, result);
+	ft_write('0', zero, result);
 	write(1, s, len);
+	*result += len;
 }
 
-void	ft_zero_int(int width, int prcsn, int len, char *s)
+void	ft_zero_int(int width, int prcsn, int len, char *s, int *result)
 {
 	int space;
 	int zero;
@@ -68,6 +79,7 @@ void	ft_zero_int(int width, int prcsn, int len, char *s)
 	if (len > width && len > prcsn)
 	{
 		write(1, s, len);
+		*result += len;
 		return ;
 	}
 	if (prcsn > len)
@@ -81,17 +93,14 @@ void	ft_zero_int(int width, int prcsn, int len, char *s)
 	}
 	if (prcsn != -1)
 		space = (prcsn > len) ? width - prcsn : width - len;
-	ft_write(' ', space);
-	if (*s == '-')
-	{
-		s++;
-		write(1, "-", 1);
-	}
-	ft_write('0', zero);
+	ft_write(' ', space, result);
+	s = ft_negative(s, result);
+	ft_write('0', zero, result);
 	write(1, s, len);
+	*result += len;
 }
 
-void	ft_dash_int(int width, int prcsn, int len, char *s)
+void	ft_dash_int(int width, int prcsn, int len, char *s, int *result)
 {
 	int space;
 	int zero;
@@ -103,21 +112,24 @@ void	ft_dash_int(int width, int prcsn, int len, char *s)
 		s++;
 		len--;
 		width--;
+		(*result)++;
 	}
 	if (len > width && len > prcsn)
 	{
 		write(1, s, len);
+		*result += len;
 		return ;
 	}
 	if (prcsn > len)
 		zero = prcsn - len;
 	space = (prcsn > len) ? width - prcsn : width - len;
-	ft_write('0', zero);
+	ft_write('0', zero, result);
 	write(1, s, len);
-	ft_write(' ', space);
+	*result += len;
+	ft_write(' ', space, result);
 }
 
-void	ft_integer(const char *fmt, t_conv *conv, va_list ap)
+void	ft_integer(const char *fmt, t_conv *conv, va_list ap, int *result)
 {
 	int i;
 	int width;
@@ -132,10 +144,15 @@ void	ft_integer(const char *fmt, t_conv *conv, va_list ap)
 	width = conv->width;
 	prcsn = conv->prcsn;
 	len = ft_strlen(s);
+	if (prcsn == 0)
+	{
+		while (*s == '0')
+			s++;
+	}
 	if (conv->flag != '-' && conv->flag != '0')
-		ft_no_flag(width, prcsn, len, s);
+		ft_no_flag(width, prcsn, len, s, result);
 	if (conv->flag == '0')
-		ft_zero_int(width, prcsn, len, s);
+		ft_zero_int(width, prcsn, len, s, result);
 	if (conv->flag == '-')
-		ft_dash_int(width, prcsn, len, s);
+		ft_dash_int(width, prcsn, len, s, result);
 }

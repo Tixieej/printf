@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/07 15:49:36 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/07 15:51:05 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/16 16:05:19 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 #include <unistd.h>
 
-void ft_char(const char *fmt, t_conv *conv, va_list ap)
+void ft_char(const char *fmt, t_conv *conv, va_list ap, int *result)
 {
 	char	c;
 	int		width;
@@ -26,14 +26,15 @@ void ft_char(const char *fmt, t_conv *conv, va_list ap)
 	if (width != 0)
 	{
 		if (conv->flag != '-' && conv->flag != '0')
-			ft_spaces(width, -1, 1);
+			ft_spaces(width, -1, 1, result);
 		if (conv->flag == '0')
-			ft_zeroes(width, -1, 1);
+			ft_zeroes(width, -1, 1, result);
 	}
 	write(1, &c, 1);
+	(*result)++;
 	if (conv->flag == '-')
 	{
 		//printf("\n- flag is hier\n");
-		ft_spaces(width, -1, 1);
+		ft_spaces(width, -1, 1, result);
 	}
 }

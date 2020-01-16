@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/15 13:54:35 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/05 12:55:21 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/16 15:43:37 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ const char	*ft_precision(const char *fmt, t_conv *conv)
 {
 	fmt++;
 	conv->prcsn = ft_atoi(&fmt[0]);
+	//printf("\nft_precision:\t prcsn = %i\n", conv->prcsn);
 	return (fmt);
 }
 
@@ -49,7 +50,7 @@ const char	*ft_flag(const char *fmt, va_list ap, t_conv *conversion)
 		if (*fmt == '0')
 		{
 			conversion->flag = '0';
-			conversion->padding = '0';
+		//	conversion->padding = '0';
 		//	printf("flag --> 0\n");
 			fmt++;
 			conversion->width = ft_atoi(&fmt[0]);
@@ -57,7 +58,7 @@ const char	*ft_flag(const char *fmt, va_list ap, t_conv *conversion)
 		if (*fmt == '-')
 		{
 			conversion->flag = '-';
-			conversion->padding = ' ';
+		//	conversion->padding = ' ';
 		//	printf("flag --> -\n");
 			while (*fmt == '0' || *fmt == '-')
 				fmt++;
@@ -76,56 +77,27 @@ const char	*ft_flag(const char *fmt, va_list ap, t_conv *conversion)
 
 /* functie die flags krijgt en afhandelt hij krijgt % binnen */
 /* hier moet een deel van wat je in printf hebt naartoe */
-const char	*type(const char *fmt, va_list ap, t_conv *conversion)
+const char	*type(const char *fmt, va_list ap, t_conv *conversion, int *result)
 {
-	char			c;
-	char			*s;
-	void			*p;
-	int				d;
-	//int				i;
 	unsigned int	u;
-	unsigned int	x;
 	unsigned int	X;//deze naam mag niet van norminette
 
-	d = 0;	
 	//printf("\ntype --> fmt is [%c]\n", *fmt);
 	if (*fmt == 'c')
-	{
-		c = va_arg(ap, int);
-		conversion->type = 'c';
-		write(1, &c, 1);
-	}
+		ft_char(fmt, conversion, ap, result);
 	else if (*fmt == 's')
-	{
-		s = va_arg(ap, char *);
-		conversion->type = 's';
-		write(1, s, ft_strlen(s));
-	}
+		ft_string(fmt, conversion, ap, result);
 	else if (*fmt == 'p')
-	{
-		p = va_arg(ap, void *);
-		write(1, "void ptr", 8);
-	}
+		ft_pointer(fmt, conversion, ap, result);
 	else if (*fmt == 'i' || *fmt == 'd')
-	{
-		//i = va_arg(ap, int);
-		//conversion->type = 'i';
-		//s = ft_itoa(i);
-		//conversion->arglen = ft_strlen(s);
-		//ft_padding(conversion, ft_strlen(s));
-		ft_integer(fmt, conversion, ap);
-		//write(1, s, ft_strlen(s));
-	}
+		ft_integer(fmt, conversion, ap, result);
 	else if (*fmt == 'u')
 	{
 		u = va_arg(ap, unsigned int);
 		write(1, "uint", 4);
 	}
 	else if (*fmt == 'x')
-	{
-		x = va_arg(ap, unsigned int);
-		write(1, "hexadec", 7);
-	}
+		ft_hex(fmt, conversion, ap, result);
 	else if (*fmt == 'X')
 	{
 		X = va_arg(ap, unsigned int);
@@ -138,7 +110,7 @@ const char	*type(const char *fmt, va_list ap, t_conv *conversion)
 	return (fmt);
 }
 
-const char	*percent(const char *fmt, va_list ap)
+const char	*percent(const char *fmt, va_list ap, int *len_ptr)
 {
 	t_conv	*conversion;
 
@@ -153,46 +125,41 @@ const char	*percent(const char *fmt, va_list ap)
 	while (*fmt >= '0' && *fmt <= '9')
 		fmt++;
 	/* . = precision = max no of char to output*/
-	conversion->prcsn = 0;
+	conversion->prcsn = -1;
 	if (*fmt == '.')
 	{
 		fmt = ft_precision(fmt, conversion);
 		//printf("\npercent --> len of prcsn is [%i]\n", (int)ft_strlen(ft_itoa(conversion->prcsn)));
 		fmt += (int)ft_strlen(ft_itoa(conversion->prcsn));
-		//als 0 en . dan wil je spaties ipv de nullen
-		if (conversion->flag == '0')
-			conversion->padding = ' ';
-		/* er komt nu een getal of een *  */
 	}
 	/* cspdiuxX% */
-	fmt = type(fmt, ap, conversion);
+	fmt = type(fmt, ap, conversion, len_ptr);
 	//printf("\nconversion is gevuld met flag=%c, width=%i, precision=%i, type=%c\n",
 		   //	conversion->flag, conversion->width, conversion->prcsn, conversion->type);
 	return (fmt);
 }
 
-/* fmt is de string, altijd het eerste argument van printf */
-/* ... staat voor alle andere argumenten, die bij de flags in fmt horen */
 int			ft_printf(const char *fmt, ...)
 {
 	va_list	ap;
 	char	rest;
-	
+	int		result;
+
+	result = 0;
 	va_start(ap, fmt);
 	while (*fmt)
 	{
-		/* als % voorkomt in fmt, moet je kijken wat erna komt */
-		/* sla alles voor de placeholder/type op in een struct */
 		if (*fmt == '%')
-			fmt = percent(fmt, ap);
+			fmt = percent(fmt, ap, &result);
 		else
 		{
 			/*print gewoon de string*/
 			rest = *fmt;
 			write(1, &rest, 1);
+			result++;
 			fmt++;
 		}
 		va_end(ap);
 	}
-	return (0);
+	return (result);// hier moet de lengte van wat je hebt geprint komen
 }
