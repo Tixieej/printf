@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/15 13:54:35 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/16 15:43:37 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/20 14:06:11 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,18 @@ const char	*ft_flag(const char *fmt, va_list ap, t_conv *conversion)
 /* hier moet een deel van wat je in printf hebt naartoe */
 const char	*type(const char *fmt, va_list ap, t_conv *conversion, int *result)
 {
-	unsigned int	u;
-	unsigned int	X;//deze naam mag niet van norminette
-
-	//printf("\ntype --> fmt is [%c]\n", *fmt);
 	if (*fmt == 'c')
-		ft_char(fmt, conversion, ap, result);
+		ft_char(conversion, ap, result);
 	else if (*fmt == 's')
-		ft_string(fmt, conversion, ap, result);
+		ft_string(conversion, ap, result);
 	else if (*fmt == 'p')
-		ft_pointer(fmt, conversion, ap, result);
+		ft_pointer(conversion, ap, result);
 	else if (*fmt == 'i' || *fmt == 'd')
-		ft_integer(fmt, conversion, ap, result);
+		ft_integer(conversion, ap, result);
 	else if (*fmt == 'u')
-	{
-		u = va_arg(ap, unsigned int);
-		write(1, "uint", 4);
-	}
-	else if (*fmt == 'x')
-		ft_hex(fmt, conversion, ap, result);
-	else if (*fmt == 'X')
-	{
-		X = va_arg(ap, unsigned int);
-		write(1, "HEX", 3);
-	}	
+		ft_uint(conversion, ap, result);
+	else if (*fmt == 'x' || *fmt == 'X')
+		ft_hex(*fmt, conversion, ap, result);
 	else if (*fmt == '%')
 		write(1, "%", 1);
 	fmt++;

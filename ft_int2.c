@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/09 14:34:44 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/16 16:00:42 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/20 14:07:40 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	ft_dash_int(int width, int prcsn, int len, char *s, int *result)
 	ft_write(' ', space, result);
 }
 
-void	ft_integer(const char *fmt, t_conv *conv, va_list ap, int *result)
+void	ft_integer(t_conv *conv, va_list ap, int *result)
 {
 	int i;
 	int width;
@@ -137,7 +137,6 @@ void	ft_integer(const char *fmt, t_conv *conv, va_list ap, int *result)
 	int len;
 	char *s;
 
-	(void)fmt; //weghalen
 	i = va_arg(ap, int);
 	conv->type = 'i';
 	s = ft_itoa(i);

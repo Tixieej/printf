@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/07 16:47:34 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/16 16:07:11 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/20 16:25:33 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include <unistd.h>
 
 #include <stdio.h>
-static int	ft_hexlen(unsigned int x)
+int			ft_hexlen(unsigned long x)
 {
 	int				len;
-	unsigned int	nbr;
+	unsigned long	nbr;
 
 	len = 0;
 	if (x == 0)
@@ -32,7 +32,32 @@ static int	ft_hexlen(unsigned int x)
 	return (len);
 }
 
-char		*ft_itoa_hex(unsigned int x, int len)
+char		*ft_Xtoa(unsigned long x, int len)
+{
+	char			*str;
+	int				temp;
+
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	len--;
+	if (x == 0)
+		str[0] = '0';
+	while (x > 0)
+	{
+		temp = (x % 16);
+		if (temp > 9)
+			temp += 7;
+		str[len] = temp + '0';
+		x = x / 16;
+		len--;
+	}
+	return (str);
+}
+
+
+char		*ft_xtoa(unsigned long x, int len)
 {
 	char			*str;
 	//int				len;
@@ -58,19 +83,23 @@ char		*ft_itoa_hex(unsigned int x, int len)
 	return (str);
 }
 
-void		ft_hex(const char *fmt, t_conv *conv, va_list ap, int *result)
+void		ft_hex(char type, t_conv *conv, va_list ap, int *result)
 {
-	unsigned int	x;
+	unsigned long	x;
 	char			*s;
 	int				width;
 	int				prcsn;
 	int				len;
 
-	x = va_arg(ap, unsigned int);
-	(void)fmt;
+	x = va_arg(ap, unsigned long);
 	conv->type = 'x';
+	if (type == 'X')
+		conv->type = 'X';
 	len = ft_hexlen(x);
-	s = ft_itoa_hex(x, len);
+	if (conv->type == 'x')
+		s = ft_xtoa(x, len);
+	else
+		s = ft_Xtoa(x, len);
 	width = conv->width;
 	prcsn = conv->prcsn;
 	if (prcsn == 0)

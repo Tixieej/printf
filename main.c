@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/24 09:52:14 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/16 12:36:36 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/20 16:28:11 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main()
 	int		i = 5;
 	int		groot = 2147483647;
 	char	*s = "Rixt";
-	printf("\t#########################################\n");
+/*	printf("\t#########################################\n");
 	printf("\t_.-._.-._.=.= Test Integers =.=._.-._.-._ \n");
 	printf("\t#########################################\n");
 
@@ -211,7 +211,7 @@ int	main()
 
 	printf("\n - flag %%-i\n");
 	printf("[%i]\n", ft_printf("mijn: [%-i]", INT_MIN));
-	printf("[%i]\n", printf("echt: [%-i]", INT_MIN));
+	printf("[%i]\n", printf("echt: [%-i]", INT_MIN));*/
 
 
 
@@ -442,88 +442,151 @@ int	main()
 	printf("\t#########################################\n");
 	
 	int test = 0;
+	printf("\n === GEEN FLAG === \n");
 
 	printf("\n Gewoon Pointer: %%p \n");
-	printf("[%i]\n", ft_printf("mijn: [%p]\n", &test));
-	printf("[%i]\n", printf("echt: [%p]\n", &test));
+	printf("[%i]\n", ft_printf("mijn: [%p]", &test));
+	printf("[%i]\n", printf("echt: [%p]", &test));
 
-	printf("\n\t#########################################\n");
+	printf("\n kleine width: %%4p \n");
+	printf("[%i]\n", ft_printf("mijn: [%4p]", &test));
+	printf("[%i]\n", printf("echt: [%4p]", &test));
+
+	printf("\n grote width: %%13p \n");
+	printf("[%i]\n", ft_printf("mijn: [%13p]", &test));
+	printf("[%i]\n", printf("echt: [%13p]", &test));
+
+	printf("\n kleine prcsn: %%.3p \n");
+	printf("[%i]\n", ft_printf("mijn: [%.3p]", &test));
+	printf("[%i]\n", printf("echt: [%.3p]", &test));
+
+	printf("\n grote prcsn: %%.13p \n");
+	printf("[%i]\n", ft_printf("mijn: [%.13p]", &test));
+	printf("[%i]\n", printf("echt: [%.13p]", &test));
+
+	printf("\n width > prcsn: %%13.11p \n");
+	printf("[%i]\n", ft_printf("mijn: [%13.11p]", &test));
+	printf("[%i]\n", printf("echt: [%13.11p]", &test));
+
+	printf("\n prcsn > width: %%11.13p \n");
+	printf("[%i]\n", ft_printf("mijn: [%11.13p]", &test));
+	printf("[%i]\n", printf("echt: [%11.13p]", &test));
+
+	printf("\n lege prcsn: %%.p \n");
+	printf("[%i]\n", ft_printf("mijn: [%.p]", &test));
+	printf("[%i]\n", printf("echt: [%.p]", &test));
+
+	printf("\n === 0 FLAG === \n");
+
+	printf("\n Alleen 0: %%0p \n");
+	printf("[%i]\n", ft_printf("mijn: [%0p]", &test));
+	printf("[%i]\n", printf("echt: [%0p]", &test));
+
+	printf("\n kleine width: %%01p \n");
+	printf("[%i]\n", ft_printf("mijn: [%01p]", &test));
+	printf("[%i]\n", printf("echt: [%01p]", &test));
+
+	printf("\n grote width: %%016p \n");
+	printf("[%i]\n", ft_printf("mijn: [%016p]", &test));
+	printf("[%i]\n", printf("echt: [%016p]", &test));
+
+	printf("\n kleine prcsn: %%0.2p \n");
+	printf("[%i]\n", ft_printf("mijn: [%0.2p]", &test));
+	printf("[%i]\n", printf("echt: [%0.2p]", &test));
+
+	printf("\n grote prcsn: %%0.11p \n");
+	printf("[%i]\n", ft_printf("mijn: [%0.11p]", &test));
+	printf("[%i]\n", printf("echt: [%0.11p]", &test));
+
+	printf("\n width > prcsn: %%015.10p \n");
+	printf("[%i]\n", ft_printf("mijn: [%015.10p]", &test));
+	printf("[%i]\n", printf("echt: [%015.10p]", &test));
+
+	printf("\n width > prcsn: %%019.15p \n");
+	printf("[%i]\n", ft_printf("mijn: [%019.15p]", &test));
+	printf("[%i]\n", printf("echt: [%019.15p]", &test));
+
+	printf("\n prcsn > width: %%015.19p \n");
+	printf("[%i]\n", ft_printf("mijn: [%015.19p]", &test));
+	printf("[%i]\n", printf("echt: [%015.19p]", &test));
+
+	/*printf("\n\t#########################################\n");
 	printf("\t-._.-._.=.= Test Hexadecimaal =.=._.-._.-\n");
 	printf("\t#########################################\n");
 
 	printf("\n === GEEN FLAG === \n");
 
 	printf("\n geen flags: %%x \n");
-	printf("[%i]\n", ft_printf("mijn: [%x]\n", 3549));
-	printf("[%i]\n", printf("echt: [%x]\n", 3549));
+	printf("[%i]\n", ft_printf("mijn: [%x]", 3549));
+	printf("[%i]\n", printf("echt: [%x]", 3549));
 
 	printf("\n geen flags, max int: %%x \n");
-	printf("[%i]\n", ft_printf("mijn: [%x]\n", INT_MAX));
-	printf("[%i]\n", printf("echt: [%x]\n", INT_MAX));
+	printf("[%i]\n", ft_printf("mijn: [%x]", INT_MAX));
+	printf("[%i]\n", printf("echt: [%x]", INT_MAX));
 
 	printf("\n geen flags, min int: %%x \n");
-	printf("[%i]\n", ft_printf("mijn: [%x]\n", INT_MIN));
-	printf("[%i]\n", printf("echt: [%x]\n", INT_MIN));
+	printf("[%i]\n", ft_printf("mijn: [%x]", INT_MIN));
+	printf("[%i]\n", printf("echt: [%x]", INT_MIN));
 	
 	printf("\n geen flags, width: %%10x \n");
-	printf("[%i]\n", ft_printf("mijn: [%10x]\n", 4746));
-	printf("[%i]\n", printf("echt: [%10x]\n", 4746));
+	printf("[%i]\n", ft_printf("mijn: [%10x]", 4746));
+	printf("[%i]\n", printf("echt: [%10x]", 4746));
 
 	printf("\n geen flags, len>width: %%4x \n");
-	printf("[%i]\n", ft_printf("mijn: [%10x]\n", 47461235));
-	printf("[%i]\n", printf("echt: [%10x]\n", 47461235));
+	printf("[%i]\n", ft_printf("mijn: [%10x]", 47461235));
+	printf("[%i]\n", printf("echt: [%10x]", 47461235));
 
 	printf("\n geen flags, prcsn: %%.8x \n");
-	printf("[%i]\n", ft_printf("mijn: [%.8x]\n", 4746));
-	printf("[%i]\n", printf("echt: [%.8x]\n", 4746));
+	printf("[%i]\n", ft_printf("mijn: [%.8x]", 4746));
+	printf("[%i]\n", printf("echt: [%.8x]", 4746));
 
 	printf("\n geen flags, len>prcsn: %%.4x \n");
-	printf("[%i]\n", ft_printf("mijn: [%.8x]\n", 47461235));
-	printf("[%i]\n", printf("echt: [%.8x]\n", 47461235));
+	printf("[%i]\n", ft_printf("mijn: [%.8x]", 47461235));
+	printf("[%i]\n", printf("echt: [%.8x]", 47461235));
 
 	printf("\n geen flags, width > prcsn > len: %%10.8x \n");
-	printf("[%i]\n", ft_printf("mijn: [%10.8x]\n", 4746));
-	printf("[%i]\n", printf("echt: [%10.8x]\n", 4746));
+	printf("[%i]\n", ft_printf("mijn: [%10.8x]", 4746));
+	printf("[%i]\n", printf("echt: [%10.8x]", 4746));
 
 	printf("\n geen flags, width > len > prcsn: %%10.3x \n");
-	printf("[%i]\n", ft_printf("mijn: [%10.3x]\n", 4746123));
-	printf("[%i]\n", printf("echt: [%10.3x]\n", 4746123));
+	printf("[%i]\n", ft_printf("mijn: [%10.3x]", 4746123));
+	printf("[%i]\n", printf("echt: [%10.3x]", 4746123));
 
 	printf("\n geen flags, prcsn>widtdh>len: %%6.8x \n");
-	printf("[%i]\n", ft_printf("mijn: [%6.8x]\n", 4746));
-	printf("[%i]\n", printf("echt: [%6.8x]\n", 4746));
+	printf("[%i]\n", ft_printf("mijn: [%6.8x]", 4746));
+	printf("[%i]\n", printf("echt: [%6.8x]", 4746));
 
 	printf("\n geen flags, prcsn>len>width: %%3.8x \n");
-	printf("[%i]\n", ft_printf("mijn: [%3.8x]\n", 124746));
-	printf("[%i]\n", printf("echt: [%3.8x]\n", 124746));
+	printf("[%i]\n", ft_printf("mijn: [%3.8x]", 124746));
+	printf("[%i]\n", printf("echt: [%3.8x]", 124746));
 
 	printf("\n geen flags, len > width > prcsn: %%5.3x \n");
-	printf("[%i]\n", ft_printf("mijn: [%5.3x]\n", 474618569));
-	printf("[%i]\n", printf("echt: [%5.3x]\n", 474618569));
+	printf("[%i]\n", ft_printf("mijn: [%5.3x]", 474618569));
+	printf("[%i]\n", printf("echt: [%5.3x]", 474618569));
 
 	printf("\n geen flags, len > prcsn > width: %%3.5x \n");
-	printf("[%i]\n", ft_printf("mijn: [%3.5x]\n", 987147426));
-	printf("[%i]\n", printf("echt: [%3.5x]\n", 987147426));
+	printf("[%i]\n", ft_printf("mijn: [%3.5x]", 987147426));
+	printf("[%i]\n", printf("echt: [%3.5x]", 987147426));
 
 	printf("\n len>prcsn=width %%.0x \n");
-	printf("[%i]\n", ft_printf("mijn: [%.0x]\n", 0));
-	printf("[%i]\n", printf("echt: [%.0x]\n", 0));
+	printf("[%i]\n", ft_printf("mijn: [%.0x]", 0));
+	printf("[%i]\n", printf("echt: [%.0x]", 0));
 
 	printf("\n len>prcsn=width %%0.0x \n");
-	printf("[%i]\n", ft_printf("mijn: [%0.0x]\n", 0));
-	printf("[%i]\n", printf("echt: [%0.0x]\n", 0));
+	printf("[%i]\n", ft_printf("mijn: [%0.0x]", 0));
+	printf("[%i]\n", printf("echt: [%0.0x]", 0));
 
 	printf("\n len>prcsn=width %%-.0x \n");
-	printf("[%i]\n", ft_printf("mijn: [%-.0x]\n", 0));
-	printf("[%i]\n", printf("echt: [%-.0x]\n", 0));
+	printf("[%i]\n", ft_printf("mijn: [%-.0x]", 0));
+	printf("[%i]\n", printf("echt: [%-.0x]", 0));
 
 	printf("\n width>len>prcsn %%5.0x \n");
-	printf("[%i]\n", ft_printf("mijn: [%5.0x]\n", 0));
-	printf("[%i]\n", printf("echt: [%5.0x]\n", 0));
+	printf("[%i]\n", ft_printf("mijn: [%5.0x]", 0));
+	printf("[%i]\n", printf("echt: [%5.0x]", 0));
 
 	printf("\n len>prcsn=width %%.0x \n");
-	printf("[%i]\n", ft_printf("mijn: [%.0x]\n", 5));
-	printf("[%i]\n", printf("echt: [%.0x]\n", 5));
+	printf("[%i]\n", ft_printf("mijn: [%.0x]", 5));
+	printf("[%i]\n", printf("echt: [%.0x]", 5));
 
 	printf("\n === ALLES MET  0 FLAG === \n");
 
@@ -593,6 +656,82 @@ int	main()
 
 	printf("\n - flag, width 10, prcsn 6 %%-10.6x \n");
 	printf("[%i]\n", ft_printf("mijn: [%-10.6x]", 45));
-	printf("[%i]\n", printf("echt: [%-10.6x]", 45));
+	printf("[%i]\n", printf("echt: [%-10.6x]", 45));*/
+
+
+	printf("\n\t#########################################\n");
+	printf("\t-._.-._.=.= Test Unsigned int =.=._.-._.-\n");
+	printf("\t#########################################\n");
+
+	printf("\n === GEEN FLAG === \n");
+
+	printf("\n niks: %%u \n");
+	printf("[%i]\n", ft_printf("mijn: [%u]", 2147483647));
+	printf("[%i]\n", printf("echt: [%u]", 2147483647));
+
+	printf("\n nul: %%u \n");
+	printf("[%i]\n", ft_printf("mijn: [%u]", 0));
+	printf("[%i]\n", printf("echt: [%u]", 0));
+
+	printf("\n tiental: %%u \n");
+	printf("[%i]\n", ft_printf("mijn: [%u]", 45454500));
+	printf("[%i]\n", printf("echt: [%u]", 45454500));
+
+	printf("\n width: %%5u \n");
+	printf("[%i]\n", ft_printf("mijn: [%5u]", 79142));
+	printf("[%i]\n", printf("echt: [%5u]", 79142));
+
+	printf("\n prcsn: %%.5u \n");
+	printf("[%i]\n", ft_printf("mijn: [%.5u]", 3337));
+	printf("[%i]\n", printf("echt: [%.5u]", 3337));
+
+	printf("\n 0 prcsn, u = 0: %%.0u \n");
+	printf("[%i]\n", ft_printf("mijn: [%.0u]", 0));
+	printf("[%i]\n", printf("echt: [%.0u]", 0));
+
+	printf("\n width en prcsn: %%10.7u \n");
+	printf("[%i]\n", ft_printf("mijn: [%10.7u]", 46475));
+	printf("[%i]\n", printf("echt: [%10.7u]", 46475));
+
+	printf("\n === 0 FLAG === \n");
+
+	printf("\n alleen 0: %%0u \n");
+	printf("[%i]\n", ft_printf("mijn: [%0u]", 2441));
+	printf("[%i]\n", printf("echt: [%0u]", 2441));
+
+	printf("\n width: %%08u \n");
+	printf("[%i]\n", ft_printf("mijn: [%08u]", 1786));
+	printf("[%i]\n", printf("echt: [%08u]", 1786));
+
+	printf("\n prcsn: %%0.7u \n");
+	printf("[%i]\n", ft_printf("mijn: [%0.7u]", 92734));
+	printf("[%i]\n", printf("echt: [%0.7u]", 92734));
+
+	printf("\n width > prcsn: %%08.6u \n");
+	printf("[%i]\n", ft_printf("mijn: [%08.6u]", 3646));
+	printf("[%i]\n", printf("echt: [%08.6u]", 3646));
+
+	printf("\n prcsn > width: %%06.8u \n");
+	printf("[%i]\n", ft_printf("mijn: [%06.8u]", 909));
+	printf("[%i]\n", printf("echt: [%06.8u]", 909));
+
+	printf("\n === - FLAG === \n");
+
+	printf("\n onzichtbare prcsn, u = 0: %%-5.u \n");
+	printf("[%i]\n", ft_printf("mijn: [%-5.u]", 0));
+	printf("[%i]\n", printf("echt: [%-5.u]", 0));
+
+
+	printf("\n\t#########################################\n");
+	printf("\t-._.-._.-._.=.= Test MIX =.=._.-._.-._.-\n");
+	printf("\t#########################################\n");
+
+	int		getal = 85;
+	char	*zin = "het adres van";
+
+	printf("\n %%i %%p %%s \n");
+	printf("[%i]\n", ft_printf("mijn: %s %i is %p", zin, getal, &getal));
+	printf("[%i]\n", printf("echt: %s %i is %p", zin, getal, &getal));
+
 
 }

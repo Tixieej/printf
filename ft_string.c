@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/24 12:58:00 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/16 16:01:54 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/20 12:31:30 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,13 @@ void	ft_spaces(int width, int prcsn, int len, int *result)
 	}
 }
 
-void	ft_string(const char *fmt, t_conv *conv, va_list ap, int *result)
+void	ft_string(t_conv *conv, va_list ap, int *result)
 {
 	char	*s;
 	int		width;
 	int		len;
 	int		prcsn;
 
-	(void)fmt;   // WEHGHAEN LLOL
 	s = va_arg(ap, char*);
 	conv->type = 's';
 	width = conv->width;
