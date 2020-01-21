@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/07 15:49:36 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/20 12:33:00 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/21 11:56:34 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 #include "libft/libft.h"
 #include <unistd.h>
 
-void ft_char(t_conv *conv, va_list ap, int *result)
+void ft_char(const char fmt, t_conv *conv, va_list ap, int *result)
 {
 	char	c;
 	int		width;
 
-	c = va_arg(ap, int);
+	if (fmt == '%')
+		c = '%';
+	else
+		c = va_arg(ap, int);
 	conv->type = 'c';
 	width = conv->width;
 	if (width != 0)

@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/24 09:52:14 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/20 16:28:11 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/21 11:27:32 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -448,29 +448,41 @@ int	main()
 	printf("[%i]\n", ft_printf("mijn: [%p]", &test));
 	printf("[%i]\n", printf("echt: [%p]", &test));
 
+	printf("\n Null Pointer: %%p \n");
+	printf("[%i]\n", ft_printf("mijn: [%p]", NULL));
+	printf("[%i]\n", printf("echt: [%p]", NULL));
+
 	printf("\n kleine width: %%4p \n");
 	printf("[%i]\n", ft_printf("mijn: [%4p]", &test));
 	printf("[%i]\n", printf("echt: [%4p]", &test));
 
-	printf("\n grote width: %%13p \n");
-	printf("[%i]\n", ft_printf("mijn: [%13p]", &test));
-	printf("[%i]\n", printf("echt: [%13p]", &test));
+	printf("\n grote width: %%16p \n");
+	printf("[%i]\n", ft_printf("mijn: [%16p]", &test));
+	printf("[%i]\n", printf("echt: [%16p]", &test));
+
+	printf("\n grote width, NULL: %%16p \n");
+	printf("[%i]\n", ft_printf("mijn: [%16p]", NULL));
+	printf("[%i]\n", printf("echt: [%16p]", NULL));
 
 	printf("\n kleine prcsn: %%.3p \n");
 	printf("[%i]\n", ft_printf("mijn: [%.3p]", &test));
 	printf("[%i]\n", printf("echt: [%.3p]", &test));
 
-	printf("\n grote prcsn: %%.13p \n");
-	printf("[%i]\n", ft_printf("mijn: [%.13p]", &test));
-	printf("[%i]\n", printf("echt: [%.13p]", &test));
+	printf("\n grote prcsn: %%.16p \n");
+	printf("[%i]\n", ft_printf("mijn: [%.16p]", &test));
+	printf("[%i]\n", printf("echt: [%.16p]", &test));
 
-	printf("\n width > prcsn: %%13.11p \n");
-	printf("[%i]\n", ft_printf("mijn: [%13.11p]", &test));
-	printf("[%i]\n", printf("echt: [%13.11p]", &test));
+	printf("\n grote prcsn, NULL: %%.16p \n");
+	printf("[%i]\n", ft_printf("mijn: [%.16p]", NULL));
+	printf("[%i]\n", printf("echt: [%.16p]", NULL));
 
-	printf("\n prcsn > width: %%11.13p \n");
-	printf("[%i]\n", ft_printf("mijn: [%11.13p]", &test));
-	printf("[%i]\n", printf("echt: [%11.13p]", &test));
+	printf("\n width > prcsn: %%16.15p \n");
+	printf("[%i]\n", ft_printf("mijn: [%16.15p]", &test));
+	printf("[%i]\n", printf("echt: [%16.15p]", &test));
+
+	printf("\n prcsn > width: %%15.16p \n");
+	printf("[%i]\n", ft_printf("mijn: [%15.16p]", &test));
+	printf("[%i]\n", printf("echt: [%15.16p]", &test));
 
 	printf("\n lege prcsn: %%.p \n");
 	printf("[%i]\n", ft_printf("mijn: [%.p]", &test));
@@ -481,6 +493,10 @@ int	main()
 	printf("\n Alleen 0: %%0p \n");
 	printf("[%i]\n", ft_printf("mijn: [%0p]", &test));
 	printf("[%i]\n", printf("echt: [%0p]", &test));
+
+	printf("\n Null Pointer: %%0p \n");
+	printf("[%i]\n", ft_printf("mijn: [%0p]", NULL));
+	printf("[%i]\n", printf("echt: [%0p]", NULL));
 
 	printf("\n kleine width: %%01p \n");
 	printf("[%i]\n", ft_printf("mijn: [%01p]", &test));
@@ -494,9 +510,9 @@ int	main()
 	printf("[%i]\n", ft_printf("mijn: [%0.2p]", &test));
 	printf("[%i]\n", printf("echt: [%0.2p]", &test));
 
-	printf("\n grote prcsn: %%0.11p \n");
-	printf("[%i]\n", ft_printf("mijn: [%0.11p]", &test));
-	printf("[%i]\n", printf("echt: [%0.11p]", &test));
+	printf("\n grote prcsn: %%0.19p \n");
+	printf("[%i]\n", ft_printf("mijn: [%0.19p]", &test));
+	printf("[%i]\n", printf("echt: [%0.19p]", &test));
 
 	printf("\n width > prcsn: %%015.10p \n");
 	printf("[%i]\n", ft_printf("mijn: [%015.10p]", &test));
@@ -506,9 +522,29 @@ int	main()
 	printf("[%i]\n", ft_printf("mijn: [%019.15p]", &test));
 	printf("[%i]\n", printf("echt: [%019.15p]", &test));
 
+	printf("\n prcsn > width: %%010.19p \n");
+	printf("[%i]\n", ft_printf("mijn: [%010.19p]", &test));
+	printf("[%i]\n", printf("echt: [%010.19p]", &test));
+
 	printf("\n prcsn > width: %%015.19p \n");
 	printf("[%i]\n", ft_printf("mijn: [%015.19p]", &test));
 	printf("[%i]\n", printf("echt: [%015.19p]", &test));
+
+	printf("\n === - FLAG === \n");
+
+	printf("\n Null Pointer: %%-p \n");
+	printf("[%i]\n", ft_printf("mijn: [%-p]", NULL));
+	printf("[%i]\n", printf("echt: [%-p]", NULL));
+
+	int a01 = 55;
+	int a02 = 4;
+	int a03 = 99944;
+	int a04 = 2;
+	int a05 = 0;
+	printf("\n veel Pointers: %%-20p-20p.. \n");
+	printf("[%i]\n", ft_printf("mijn: [%-20p%-20p%-20p%-20p%-20p]", &a01, &a02, &a03, &a04, &a05));
+	printf("[%i]\n", printf("echt: [%-20p%-20p%-20p%-20p%-20p]", &a01, &a02, &a03, &a04, &a05));
+
 
 	/*printf("\n\t#########################################\n");
 	printf("\t-._.-._.=.= Test Hexadecimaal =.=._.-._.-\n");

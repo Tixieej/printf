@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/15 13:54:35 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/20 14:06:11 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/21 11:59:41 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ const char	*ft_precision(const char *fmt, t_conv *conv)
 {
 	fmt++;
 	conv->prcsn = ft_atoi(&fmt[0]);
-	//printf("\nft_precision:\t prcsn = %i\n", conv->prcsn);
 	return (fmt);
 }
 
@@ -37,7 +36,6 @@ void		ft_padding(t_conv *conv, int len)
 		c = conv->padding;
 		while (total > 0)
 		{
-			//write(1, &c, 1);
 			total--;
 		}
 	}
@@ -51,7 +49,6 @@ const char	*ft_flag(const char *fmt, va_list ap, t_conv *conversion)
 		{
 			conversion->flag = '0';
 		//	conversion->padding = '0';
-		//	printf("flag --> 0\n");
 			fmt++;
 			conversion->width = ft_atoi(&fmt[0]);
 		}
@@ -59,7 +56,6 @@ const char	*ft_flag(const char *fmt, va_list ap, t_conv *conversion)
 		{
 			conversion->flag = '-';
 		//	conversion->padding = ' ';
-		//	printf("flag --> -\n");
 			while (*fmt == '0' || *fmt == '-')
 				fmt++;
 		}
@@ -79,8 +75,8 @@ const char	*ft_flag(const char *fmt, va_list ap, t_conv *conversion)
 /* hier moet een deel van wat je in printf hebt naartoe */
 const char	*type(const char *fmt, va_list ap, t_conv *conversion, int *result)
 {
-	if (*fmt == 'c')
-		ft_char(conversion, ap, result);
+	if (*fmt == 'c' || *fmt == '%')
+		ft_char(*fmt, conversion, ap, result);
 	else if (*fmt == 's')
 		ft_string(conversion, ap, result);
 	else if (*fmt == 'p')
@@ -91,10 +87,7 @@ const char	*type(const char *fmt, va_list ap, t_conv *conversion, int *result)
 		ft_uint(conversion, ap, result);
 	else if (*fmt == 'x' || *fmt == 'X')
 		ft_hex(*fmt, conversion, ap, result);
-	else if (*fmt == '%')
-		write(1, "%", 1);
 	fmt++;
-	//printf("\ntype --> fmt is [%c]\n", *fmt);
 	return (fmt);
 }
 
@@ -105,25 +98,17 @@ const char	*percent(const char *fmt, va_list ap, int *len_ptr)
 	conversion = malloc(sizeof(t_conv));
 	if (!conversion)
 		return ("error!");
-	//printf("\npercent --> fmt is [%c]\n", *fmt);
 	fmt++;
-	/* flags: 0 - */
 	fmt = ft_flag(fmt, ap, conversion);
-	/* * = width = min no of char to output */
 	while (*fmt >= '0' && *fmt <= '9')
 		fmt++;
-	/* . = precision = max no of char to output*/
 	conversion->prcsn = -1;
 	if (*fmt == '.')
 	{
 		fmt = ft_precision(fmt, conversion);
-		//printf("\npercent --> len of prcsn is [%i]\n", (int)ft_strlen(ft_itoa(conversion->prcsn)));
 		fmt += (int)ft_strlen(ft_itoa(conversion->prcsn));
 	}
-	/* cspdiuxX% */
 	fmt = type(fmt, ap, conversion, len_ptr);
-	//printf("\nconversion is gevuld met flag=%c, width=%i, precision=%i, type=%c\n",
-		   //	conversion->flag, conversion->width, conversion->prcsn, conversion->type);
 	return (fmt);
 }
 
