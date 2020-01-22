@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/07 16:47:34 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/20 16:25:33 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/22 16:11:04 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,16 +104,16 @@ void		ft_hex(char type, t_conv *conv, va_list ap, int *result)
 	prcsn = conv->prcsn;
 	if (prcsn == 0)
 	{
-		while (*s == '0')
+		if (*s == '0')
 		{
-			s++;
+			free(s);//test %05.0 met 0, dat moet "     " geven?
 			len = 0;
 		}
 	}
 	if (conv->flag != '-' && conv->flag != '0')
 		ft_no_flag(width, prcsn, len, s, result);
 	if (conv->flag == '0')
-		ft_zero_int(width, prcsn, len, s, result);
+		ft_zero_int(conv, len, s, result);
 	if (conv->flag == '-')
 		ft_dash_int(width, prcsn, len, s, result);
 }

@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/24 12:58:00 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/20 12:31:30 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/22 15:47:05 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	ft_string(t_conv *conv, va_list ap, int *result)
 
 	s = va_arg(ap, char*);
 	conv->type = 's';
+	if (!s)
+		s = "(null)";
 	width = conv->width;
 	prcsn = conv->prcsn;
 	len = ft_strlen(s);

@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 11:36:56 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/20 13:26:00 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/22 16:45:11 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void ft_uint(t_conv *conv, va_list ap, int *result)
 	if (conv->flag != '-' && conv->flag != '0')
 		ft_no_flag(width, prcsn, len, s, result);
 	if (conv->flag == '0')
-		ft_zero_int(width, prcsn, len, s, result);
+		ft_zero_int(conv, len, s, result);
 	if (conv->flag == '-')
 		ft_dash_int(width, prcsn, len, s, result);
 }

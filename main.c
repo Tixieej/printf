@@ -6,7 +6,7 @@
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/24 09:52:14 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/21 11:27:32 by rde-vrie      ########   odam.nl         */
+/*   Updated: 2020/01/22 16:52:59 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 int	main()
 {
-	char	c = 'g';
-	int		i = 5;
-	int		groot = 2147483647;
-	char	*s = "Rixt";
-/*	printf("\t#########################################\n");
+//	char	c = 'g';
+//	int		i = 5;
+//	int		groot = 2147483647;
+//	char	*s = "Rixt";
+	printf("\t#########################################\n");
 	printf("\t_.-._.-._.=.= Test Integers =.=._.-._.-._ \n");
 	printf("\t#########################################\n");
 
@@ -148,9 +148,9 @@ int	main()
 	printf("[%i]\n", ft_printf("mijn: [%026i]", 123456789));	
 	printf("[%i]\n", printf("echt: [%026i]", 123456789));
 
-	printf("\n<>-<>-<> %%000000-000006i <>-<>-<>\n");
-	printf("[%i]\n", ft_printf("mijn: [%000000-000006i]", 25));
-	printf("[%i]\n", printf("echt: [%000000-000006i]", 25));
+//	printf("\n<>-<>-<> %%000000-000006i <>-<>-<>\n");
+//	printf("[%i]\n", ft_printf("mijn: [%000000-000006i]", 25));
+//	printf("[%i]\n", printf("echt: [%000000-000006i]", 25));
 
 	printf("\n<>-<>-<>-<> %%0*i, 8 <>-<>-<>-<>\n");
 	printf("[%i]\n", ft_printf("mijn: [%0*i]", 8, 125));
@@ -211,11 +211,11 @@ int	main()
 
 	printf("\n - flag %%-i\n");
 	printf("[%i]\n", ft_printf("mijn: [%-i]", INT_MIN));
-	printf("[%i]\n", printf("echt: [%-i]", INT_MIN));*/
+	printf("[%i]\n", printf("echt: [%-i]", INT_MIN));
 
 
 
-/*	printf("\n\t#########################################\n");
+	printf("\n\t#########################################\n");
 	printf("\t_.-._.-._.=.= Test Strings =.=._.-._.-._\n");
 	printf("\t#########################################\n");
 
@@ -223,8 +223,8 @@ int	main()
 
 	// NIET SCCHRIKKEN, DEZE SEGFAULT
 	printf("\n NULL string: %%s \n");
-	printf("[%i]\n", ft_printf("mijn: [%s]\n", NULL));
-	printf("[%i]\n", printf("echt: [%s]\n", NULL));
+	printf("[%i]\n", ft_printf("mijn: [%5.2s]\n", NULL));
+	printf("[%i]\n", printf("echt: [%5.2s]\n", NULL));
 
 	printf("\n width, short string: %%6s \n");
 	printf("[%i]\n", ft_printf("mijn: [%6s]\n", "la"));
@@ -247,58 +247,58 @@ int	main()
 	printf("[%i]\n", printf("echt: [%10.6s]\n", "la"));
 
 	printf("\n long width, precision, long string: %%10.6s \n");
-	printf("[%i]\n", ft_printf("mijn: [%10.6s]\n", "dit is een heel verhaal");
-	printf("[%i]\n", printf("echt: [%10.6s]\n", "dit is een heel verhaal");
+	printf("[%i]\n", ft_printf("mijn: [%10.6s]\n", "dit is een heel verhaal"));
+	printf("[%i]\n", printf("echt: [%10.6s]\n", "dit is een heel verhaal"));
 
 	printf("\n short width, precision, short string: %%4.6s \n");
-	printf("[%i]\n", ft_printf("mijn: [%4.6s]\n", "la");
-	printf("[%i]\n", printf("echt: [%4.6s]\n", "la");
+	printf("[%i]\n", ft_printf("mijn: [%4.6s]\n", "la"));
+	printf("[%i]\n", printf("echt: [%4.6s]\n", "la"));
 
 	printf("\n short width, precision, long string: %%4.6s \n");
-	printf("[%i]\n", ft_printf("mijn: [%4.6s]\n", "dit is een heel verhaal");
-	printf("[%i]\n", printf("echt: [%4.6s]\n", "dit is een heel verhaal");
+	printf("[%i]\n", ft_printf("mijn: [%4.6s]\n", "dit is een heel verhaal"));
+	printf("[%i]\n", printf("echt: [%4.6s]\n", "dit is een heel verhaal"));
 
 	printf("\n<>-<>-<>-<> %%.44s <>-<>-<>-<>\n");
-	printf("[%i]\n", ft_printf("mijn: [%.44s]\n", "dit is een string in ft_printf");	
-	printf("[%i]\n", printf("echt: [%.44s]\n", "dit is een string in printf");
+	printf("[%i]\n", ft_printf("mijn: [%.44s]\n", "dit is een string in ft_printf"));	
+	printf("[%i]\n", printf("echt: [%.44s]\n", "dit is een string in printf"));
 
-	printf("\n ALLEEN 0 FLAG \n");
+	//printf("\n ALLEEN 0 FLAG \n");
 
-	printf("\n alleen 0 flag %%0s \n");
-	printf("[%i]\n", ft_printf("mijn: [%0s]\n", "la");
-	printf("[%i]\n", printf("echt: [%0s]\n", "la");
+	//printf("\n alleen 0 flag %%0s \n");
+	//printf("[%i]\n", ft_printf("mijn: [%0s]\n", "la"));
+	//printf("[%i]\n", printf("echt: [%0s]\n", "la"));
 
-	printf("\n zero, width, short string: %%06s \n");
-	printf("[%i]\n", ft_printf("mijn: [%06s]\n", "la");
-	printf("[%i]\n", printf("echt: [%06s]\n", "la");
+	//printf("\n zero, width, short string: %%06s \n");
+	//printf("[%i]\n", ft_printf("mijn: [%06s]\n", "la"));
+	//printf("[%i]\n", printf("echt: [%06s]\n", "la"));
 
-	printf("\n zero, width, long string: %%06s \n");
-	printf("[%i]\n", ft_printf("mijn: [%06s]\n", "dit is een heel verhaal");
-	printf("[%i]\n", printf("echt: [%06s]\n", "dit is een heel verhaal");
+	//printf("\n zero, width, long string: %%06s \n");
+	//printf("[%i]\n", ft_printf("mijn: [%06s]\n", "dit is een heel verhaal"));
+	//printf("[%i]\n", printf("echt: [%06s]\n", "dit is een heel verhaal"));
 
-	printf("\n zero, precision, short string: %%0.6s \n");
-	printf("[%i]\n", ft_printf("mijn: [%0.6s]\n", "la");
-	printf("[%i]\n", printf("echt: [%0.6s]\n", "la");
+	//printf("\n zero, precision, short string: %%0.6s \n");
+	//printf("[%i]\n", ft_printf("mijn: [%0.6s]\n", "la"));
+	//printf("[%i]\n", printf("echt: [%0.6s]\n", "la"));
 
-	printf("\n zero, precision, long string: %%0.6s \n");
-	printf("[%i]\n", ft_printf("mijn: [%0.6s]\n", "dit is een heel verhaal");
-	printf("[%i]\n", printf("echt: [%0.6s]\n", "dit is een heel verhaal");
+	//printf("\n zero, precision, long string: %%0.6s \n");
+	//printf("[%i]\n", ft_printf("mijn: [%0.6s]\n", "dit is een heel verhaal"));
+	//printf("[%i]\n", printf("echt: [%0.6s]\n", "dit is een heel verhaal"));
 
-	printf("\n zero, long width, precision, short string: %%010.6s \n");
-	printf("[%i]\n", ft_printf("mijn: [%010.6s]\n", "la");
-	printf("[%i]\n", printf("echt: [%010.6s]\n", "la");
+	//printf("\n zero, long width, precision, short string: %%010.6s \n");
+	//printf("[%i]\n", ft_printf("mijn: [%010.6s]\n", "la"));
+	//printf("[%i]\n", printf("echt: [%010.6s]\n", "la"));
 
-	printf("\n long width, precision, long string: %%010.6s \n");
-	printf("[%i]\n", ft_printf("mijn: [%010.6s]\n", "dit is een heel verhaal");
-	printf("[%i]\n", printf("echt: [%010.6s]\n", "dit is een heel verhaal");
+	//printf("\n long width, precision, long string: %%010.6s \n");
+	//printf("[%i]\n", ft_printf("mijn: [%010.6s]\n", "dit is een heel verhaal"));
+	//printf("[%i]\n", printf("echt: [%010.6s]\n", "dit is een heel verhaal"));
 
-	printf("\n short width, precision, short string: %%04.6s \n");
-	printf("[%i]\n", ft_printf("mijn: [%04.6s]\n", "la");
-	printf("[%i]\n", printf("echt: [%04.6s]\n", "la");
+	//printf("\n short width, precision, short string: %%04.6s \n");
+	//printf("[%i]\n", ft_printf("mijn: [%04.6s]\n", "la"));
+	//printf("[%i]\n", printf("echt: [%04.6s]\n", "la"));
 
-	printf("\n short width, precision, long string: %%04.6s \n");
-	printf("[%i]\n", ft_printf("mijn: [%04.6s]\n", "dit is een heel verhaal");
-	printf("[%i]\n", printf("echt: [%04.6s]\n", "dit is een heel verhaal");*/
+	//printf("\n short width, precision, long string: %%04.6s \n");
+	//printf("[%i]\n", ft_printf("mijn: [%04.6s]\n", "dit is een heel verhaal"));
+	//printf("[%i]\n", printf("echt: [%04.6s]\n", "dit is een heel verhaal"));
 
 	/*printf("\n<>-<>-<>-<> %%05.12s <>-<>-<>-<>\n");
 	printf("[%i]\n", ft_printf("mijn: [%05.12s]\n", "falafelspinazietafel");	
@@ -464,31 +464,31 @@ int	main()
 	printf("[%i]\n", ft_printf("mijn: [%16p]", NULL));
 	printf("[%i]\n", printf("echt: [%16p]", NULL));
 
-	printf("\n kleine prcsn: %%.3p \n");
-	printf("[%i]\n", ft_printf("mijn: [%.3p]", &test));
-	printf("[%i]\n", printf("echt: [%.3p]", &test));
+//	printf("\n kleine prcsn: %%.3p \n");
+//	printf("[%i]\n", ft_printf("mijn: [%.3p]", &test));
+//	printf("[%i]\n", printf("echt: [%.3p]", &test));
 
-	printf("\n grote prcsn: %%.16p \n");
-	printf("[%i]\n", ft_printf("mijn: [%.16p]", &test));
-	printf("[%i]\n", printf("echt: [%.16p]", &test));
+//	printf("\n grote prcsn: %%.16p \n");
+//	printf("[%i]\n", ft_printf("mijn: [%.16p]", &test));
+//	printf("[%i]\n", printf("echt: [%.16p]", &test));
 
-	printf("\n grote prcsn, NULL: %%.16p \n");
-	printf("[%i]\n", ft_printf("mijn: [%.16p]", NULL));
-	printf("[%i]\n", printf("echt: [%.16p]", NULL));
+//	printf("\n grote prcsn, NULL: %%.16p \n");
+//	printf("[%i]\n", ft_printf("mijn: [%.16p]", NULL));
+//	printf("[%i]\n", printf("echt: [%.16p]", NULL));
 
-	printf("\n width > prcsn: %%16.15p \n");
-	printf("[%i]\n", ft_printf("mijn: [%16.15p]", &test));
-	printf("[%i]\n", printf("echt: [%16.15p]", &test));
+//	printf("\n width > prcsn: %%16.15p \n");
+//	printf("[%i]\n", ft_printf("mijn: [%16.15p]", &test));
+//	printf("[%i]\n", printf("echt: [%16.15p]", &test));
 
-	printf("\n prcsn > width: %%15.16p \n");
-	printf("[%i]\n", ft_printf("mijn: [%15.16p]", &test));
-	printf("[%i]\n", printf("echt: [%15.16p]", &test));
+//	printf("\n prcsn > width: %%15.16p \n");
+//	printf("[%i]\n", ft_printf("mijn: [%15.16p]", &test));
+//	printf("[%i]\n", printf("echt: [%15.16p]", &test));
 
-	printf("\n lege prcsn: %%.p \n");
-	printf("[%i]\n", ft_printf("mijn: [%.p]", &test));
-	printf("[%i]\n", printf("echt: [%.p]", &test));
+//	printf("\n lege prcsn: %%.p \n");
+//	printf("[%i]\n", ft_printf("mijn: [%.p]", &test));
+//	printf("[%i]\n", printf("echt: [%.p]", &test));
 
-	printf("\n === 0 FLAG === \n");
+/*	printf("\n === 0 FLAG === \n");
 
 	printf("\n Alleen 0: %%0p \n");
 	printf("[%i]\n", ft_printf("mijn: [%0p]", &test));
@@ -528,7 +528,7 @@ int	main()
 
 	printf("\n prcsn > width: %%015.19p \n");
 	printf("[%i]\n", ft_printf("mijn: [%015.19p]", &test));
-	printf("[%i]\n", printf("echt: [%015.19p]", &test));
+	printf("[%i]\n", printf("echt: [%015.19p]", &test));*/
 
 	printf("\n === - FLAG === \n");
 
@@ -546,7 +546,7 @@ int	main()
 	printf("[%i]\n", printf("echt: [%-20p%-20p%-20p%-20p%-20p]", &a01, &a02, &a03, &a04, &a05));
 
 
-	/*printf("\n\t#########################################\n");
+	printf("\n\t#########################################\n");
 	printf("\t-._.-._.=.= Test Hexadecimaal =.=._.-._.-\n");
 	printf("\t#########################################\n");
 
@@ -575,6 +575,14 @@ int	main()
 	printf("\n geen flags, prcsn: %%.8x \n");
 	printf("[%i]\n", ft_printf("mijn: [%.8x]", 4746));
 	printf("[%i]\n", printf("echt: [%.8x]", 4746));
+
+	printf("\n prcsn ontbreekt, val = 0: %%.x \n");
+	printf("[%i]\n", ft_printf("mijn: [%.x]", 0));
+	printf("[%i]\n", printf("echt: [%.x]", 0));
+
+	printf("\n prcsn ontbreekt: %%.x \n");
+	printf("[%i]\n", ft_printf("mijn: [%.x]", 44));
+	printf("[%i]\n", printf("echt: [%.x]", 44));
 
 	printf("\n geen flags, len>prcsn: %%.4x \n");
 	printf("[%i]\n", ft_printf("mijn: [%.8x]", 47461235));
@@ -692,7 +700,7 @@ int	main()
 
 	printf("\n - flag, width 10, prcsn 6 %%-10.6x \n");
 	printf("[%i]\n", ft_printf("mijn: [%-10.6x]", 45));
-	printf("[%i]\n", printf("echt: [%-10.6x]", 45));*/
+	printf("[%i]\n", printf("echt: [%-10.6x]", 45));
 
 
 	printf("\n\t#########################################\n");
@@ -729,6 +737,14 @@ int	main()
 	printf("[%i]\n", ft_printf("mijn: [%10.7u]", 46475));
 	printf("[%i]\n", printf("echt: [%10.7u]", 46475));
 
+	printf("\n width en prcsn: %%7.13u \n");
+	printf("[%i]\n", ft_printf("mijn: [%7.13u]", 46475));
+	printf("[%i]\n", printf("echt: [%7.13u]", 46475));
+
+	printf("\n width en prcsn: %%10.2u \n");
+	printf("[%i]\n", ft_printf("mijn: [%10.2u]", 475));
+	printf("[%i]\n", printf("echt: [%10.2u]", 475));
+
 	printf("\n === 0 FLAG === \n");
 
 	printf("\n alleen 0: %%0u \n");
@@ -759,7 +775,7 @@ int	main()
 
 
 	printf("\n\t#########################################\n");
-	printf("\t-._.-._.-._.=.= Test MIX =.=._.-._.-._.-\n");
+	printf("\t-._.-._.-._.=.= Test OVERIG =.=._.-._.-._.-\n");
 	printf("\t#########################################\n");
 
 	int		getal = 85;
@@ -769,5 +785,18 @@ int	main()
 	printf("[%i]\n", ft_printf("mijn: %s %i is %p", zin, getal, &getal));
 	printf("[%i]\n", printf("echt: %s %i is %p", zin, getal, &getal));
 
+	//printf("\n nep conv: %%05 \n");
+	//printf("[%i]\n", ft_printf("mijn: [%05]"));
+	//printf("[%i]\n", printf("echt: [%05]"));
 
+	//printf("\n nep conv: %%-.6\n");
+	//printf("[%i]\n", ft_printf("mijn: [%-.6]"));
+	//printf("[%i]\n", printf("echt: [%-.6]"));
+
+	printf("\n negative width in star: %%0*i, -7 \n");
+	printf("[%i]\n", ft_printf("mijn: [%0*i]", -7, 623));
+	printf("[%i]\n", printf("echt: [%0*i]", -7, 623));
+
+	while(1);
+	printf("\n einde.");
 }
