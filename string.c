@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_string.c                                        :+:    :+:            */
+/*   string.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/24 12:58:00 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/22 15:47:05 by rde-vrie      ########   odam.nl         */
+/*   Created: 2020/01/28 11:45:34 by rde-vrie      #+#    #+#                 */
+/*   Updated: 2020/02/02 11:43:37 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "libft/libft.h"
+#include "libft2/libft.h"
 #include <unistd.h>
 
-#include <stdio.h> //WEHEGALElolll
 void	ft_write_string(int prcsn, int len, char *s, int *result)
 {
 	int j;
@@ -41,6 +40,7 @@ void	ft_zeroes(int width, int prcsn, int len, int *result)
 		min++;
 	}
 }
+
 void	ft_spaces(int width, int prcsn, int len, int *result)
 {
 	int min;

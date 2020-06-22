@@ -6,44 +6,34 @@
 #    By: rde-vrie <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/15 13:34:34 by rde-vrie      #+#    #+#                  #
-#    Updated: 2020/01/22 15:27:20 by rde-vrie      ########   odam.nl          #
+#    Updated: 2020/02/02 11:44:54 by rde-vrie      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-SRC = ft_printf.c ft_int2.c ft_string.c ft_char.c ft_pointer.c ft_hex.c ft_uint.c
+SRC = ft_printf.c integer.c integer2.c string.c char.c pointer.c hex.c uint.c \
+	  conversion_router.c
 OBJ_SRC = $(SRC:.c=.o)
-BONUS =
-OBJ_BONUS = $(BONUS:.c=.o)
 LIBFT_FILES = ft_atoi.o ft_strlen.o ft_strjoin.o ft_itoa.o
-OBJ_LIBFT = $(addprefix libft/, $(LIBFT_FILES))
+OBJ_LIBFT = $(addprefix libft2/, $(LIBFT_FILES))
 HEADER = libftprintf.h
 FLAGS = -g -Wall -Werror -Wextra
 
-ifdef WITH_BONUS
-OFILES = $(OBJ_SRC) $(OBJ_BONUS)
-else
-OFILES = $(OBJ_SRC)
-endif
-
 all: $(NAME)
 
-$(NAME): $(OFILES)
-	cd libft && make
-	ar rc $(NAME) $(OFILES) $(OBJ_LIBFT)
+$(NAME): $(OBJ_SRC)
+	cd libft2 && make
+	ar rc $(NAME) $(OBJ_SRC) $(OBJ_LIBFT)
 
 %.o: %.c $(HEADER)
 	gcc -c $(FLAGS) -I. -o $@ $<
 
-bonus:
-	$(MAKE) WITH_BONUS=1 all
-
 clean:
-	$(RM) $(OBJ_SRC) $(OBJ_BONUS)
+	$(RM) $(OBJ_SRC)
 
 fclean: clean
 	$(RM) $(NAME)
-	cd libft && make fclean
+	cd libft2 && make fclean
 
 re: fclean all
 

@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_int2.c                                          :+:    :+:            */
+/*   integer.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/09 14:34:44 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/22 16:52:52 by rde-vrie      ########   odam.nl         */
+/*   Created: 2020/01/28 11:44:18 by rde-vrie      #+#    #+#                 */
+/*   Updated: 2020/02/02 11:41:35 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "libft/libft.h"
+#include "libft2/libft.h"
 #include <unistd.h>
-
-#include <stdio.h>
 
 char	*ft_negative(char *s, int *result)
 {
@@ -27,17 +25,7 @@ char	*ft_negative(char *s, int *result)
 	return (s);
 }
 
-void	ft_write(char c, int len, int *result)
-{
-	while (len > 0)
-	{
-		write(1, &c, 1);
-		len--;
-		(*result)++;
-	}
-}
-
-void	ft_no_flag(int width, int prcsn, int len, char *s, int *result)
+void	ft_no_flag(t_conv *con, int len, char *s, int *result)
 {
 	int space;
 	int zero;
@@ -47,12 +35,11 @@ void	ft_no_flag(int width, int prcsn, int len, char *s, int *result)
 	if (*s == '-')
 	{
 		len--;
-		width--;
+		con->width--;
 	}
-	if (prcsn > len)
-		zero = prcsn - len;
-	space = (prcsn > len) ? width - prcsn : width - len;
-	printf(" zero = %i ", space);
+	if (con->prcsn > len)
+		zero = con->prcsn - len;
+	space = (con->prcsn > len) ? con->width - con->prcsn : con->width - len;
 	ft_write(' ', space, result);
 	s = ft_negative(s, result);
 	ft_write('0', zero, result);
@@ -60,30 +47,27 @@ void	ft_no_flag(int width, int prcsn, int len, char *s, int *result)
 	*result += len;
 }
 
-void	ft_zero_int(t_conv *conv, int len, char *s, int *result)
+void	ft_zero_int(t_conv *con, int len, char *s, int *result)
 {
 	int space;
 	int zero;
 
-	printf("zero");
 	zero = 0;
 	space = 0;
 	if (*s == '-')
 	{
 		len--;
-		conv->width--;
+		con->width--;
 	}
-	if (conv->prcsn > len)
-		zero = conv->prcsn - len;
-	if (conv->width > len && len > conv->prcsn)
+	if (con->prcsn > len)
+		zero = con->prcsn - len;
+	if (con->width > len && len > con->prcsn)
 	{
-		if (conv->prcsn == -1)
-			zero = conv->width - len;
-		else
-			space = conv->width - len;
+		if (con->prcsn == -1)
+			zero = con->width - len;
 	}
-	if (conv->prcsn != -1)
-		space = (conv->prcsn > len) ? conv->width - conv->prcsn : conv->width - len;
+	if (con->prcsn != -1)
+		space = (con->prcsn > len) ? con->width - con->prcsn : con->width - len;
 	ft_write(' ', space, result);
 	s = ft_negative(s, result);
 	ft_write('0', zero, result);
@@ -91,22 +75,21 @@ void	ft_zero_int(t_conv *conv, int len, char *s, int *result)
 	*result += len;
 }
 
-void	ft_dash_int(int width, int prcsn, int len, char *s, int *result)
+void	ft_dash_int(t_conv *con, int len, char *s, int *result)
 {
 	int space;
 	int zero;
 
-	printf("dash");
 	zero = 0;
 	if (*s == '-')
 	{
 		len--;
-		width--;
+		con->width--;
 	}
 	s = ft_negative(s, result);
-	if (prcsn > len)
-		zero = prcsn - len;
-	space = (prcsn > len) ? width - prcsn : width - len;
+	if (con->prcsn > len)
+		zero = con->prcsn - len;
+	space = (con->prcsn > len) ? con->width - con->prcsn : con->width - len;
 	ft_write('0', zero, result);
 	write(1, s, len);
 	*result += len;
@@ -115,30 +98,27 @@ void	ft_dash_int(int width, int prcsn, int len, char *s, int *result)
 
 void	ft_integer(t_conv *conv, va_list ap, int *result)
 {
-	int i;
-	int width;
-	int prcsn;
-	int len;
-	char *s;
+	int		i;
+	int		len;
+	char	*s;
 
 	i = va_arg(ap, int);
 	conv->type = 'i';
 	s = ft_itoa(i);
-	width = conv->width;
-	prcsn = conv->prcsn;
+	if (!s)
+		return ;
 	len = ft_strlen(s);
-	if (prcsn == 0)
+	if (conv->prcsn == 0 && *s == '0')
 	{
-		if (*s == '0')
-		{
-			ft_write(' ', width, result);
-			return ;
-		}
+		ft_write(' ', conv->width, result);
+		free(s);
+		return ;
 	}
 	if (conv->flag != '-' && conv->flag != '0')
-		ft_no_flag(width, prcsn, len, s, result);
+		ft_no_flag(conv, len, s, result);
 	if (conv->flag == '0')
 		ft_zero_int(conv, len, s, result);
 	if (conv->flag == '-')
-		ft_dash_int(width, prcsn, len, s, result);
+		ft_dash_int(conv, len, s, result);
+	free(s);
 }

@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_char.c                                          :+:    :+:            */
+/*   char.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rde-vrie <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/07 15:49:36 by rde-vrie      #+#    #+#                 */
-/*   Updated: 2020/01/21 11:56:34 by rde-vrie      ########   odam.nl         */
+/*   Created: 2020/01/28 11:45:54 by rde-vrie      #+#    #+#                 */
+/*   Updated: 2020/02/02 11:43:05 by rde-vrie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "libft/libft.h"
 #include <unistd.h>
 
-void ft_char(const char fmt, t_conv *conv, va_list ap, int *result)
+void	ft_char(const char fmt, t_conv *conv, va_list ap, int *result)
 {
 	char	c;
 	int		width;
@@ -35,8 +34,5 @@ void ft_char(const char fmt, t_conv *conv, va_list ap, int *result)
 	write(1, &c, 1);
 	(*result)++;
 	if (conv->flag == '-')
-	{
-		//printf("\n- flag is hier\n");
 		ft_spaces(width, -1, 1, result);
-	}
 }
